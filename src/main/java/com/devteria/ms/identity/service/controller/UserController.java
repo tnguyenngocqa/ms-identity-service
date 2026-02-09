@@ -4,14 +4,11 @@ import com.devteria.ms.identity.service.dto.request.ApiResponse;
 import com.devteria.ms.identity.service.dto.request.UserCreationRequest;
 import com.devteria.ms.identity.service.dto.request.UserUpdateRequest;
 import com.devteria.ms.identity.service.dto.response.UserResponse;
-import com.devteria.ms.identity.service.entity.User;
-import com.devteria.ms.identity.service.mapper.UserMapper;
 import com.devteria.ms.identity.service.service.UserService;
 import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,32 +22,36 @@ public class UserController {
     UserService userService;
 
     @PostMapping
-    public ApiResponse<User> createUser(@RequestBody @Valid UserCreationRequest request) {
-        ApiResponse<User> apiResponse = new ApiResponse<>();
-
-        apiResponse.setResult(userService.createUser(request));
-
-        return apiResponse;
+    ApiResponse<UserResponse> createUser(@RequestBody @Valid UserCreationRequest request) {
+        return ApiResponse.<UserResponse>builder()
+                .result(userService.createUser(request))
+                .build();
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getUsers();
+    ApiResponse<List<UserResponse>> getAllUsers() {
+        return ApiResponse.<List<UserResponse>>builder()
+                .result(userService.getUsers())
+                .build();
     }
 
     @GetMapping("/{userId}")
-    public UserResponse getUserById(@PathVariable String userId) {
-        return userService.getUserById(userId);
+    ApiResponse<UserResponse> getUserById(@PathVariable String userId) {
+        return ApiResponse.<UserResponse>builder()
+                .result(userService.getUserById(userId))
+                .build();
     }
 
     @PutMapping("/{userId}")
-    public UserResponse updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
-        return userService.updateUser(userId, request);
+    ApiResponse<UserResponse> updateUser(@PathVariable String userId, @RequestBody UserUpdateRequest request) {
+        return ApiResponse.<UserResponse>builder()
+                .result(userService.updateUser(userId, request))
+                .build();
     }
 
     @DeleteMapping("/{userId}")
-    public String deleteUserById(@PathVariable String userId) {
+    ApiResponse<String> deleteUserById(@PathVariable String userId) {
         userService.deleteUser(userId);
-        return "User has been deleted";
+        return ApiResponse.<String>builder().result("User has been deleted").build();
     }
 }
