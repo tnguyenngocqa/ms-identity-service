@@ -1,6 +1,5 @@
-package com.devteria.ms.identity.service.dto.request;
+package com.devteria.ms.identity.service.dto.response;
 
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,11 +11,9 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserCreationRequest {
-    @Size(min = 3, message = "INVALID_USERNAME")
+public class UserResponse {
+    private String id;
     private String username;
-
-    @Size(min = 8, message = "INVALID_PASSWORD")
     private String password;
     private String firstName;
     private String lastName;
