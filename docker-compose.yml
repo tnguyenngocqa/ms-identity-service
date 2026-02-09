@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'ms-identity-service-mysql'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=identity_service'
+      - 'MYSQL_PASSWORD=12345678@Ab'
+      - 'MYSQL_ROOT_PASSWORD=12345678@Ab'
+      - 'MYSQL_USER=sean'
+    ports:
+      - '3306:3306'
