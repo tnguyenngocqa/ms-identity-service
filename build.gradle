@@ -26,6 +26,8 @@ repositories {
 }
 
 dependencies {
+    testImplementation('com.h2database:h2')
+
     implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.21.0")
     mockitoAgent 'org.mockito:mockito-core'
 
