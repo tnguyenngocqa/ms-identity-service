@@ -25,6 +25,9 @@ repositories {
 }
 
 dependencies {
+    // Source: https://mvnrepository.com/artifact/com.nimbusds/nimbus-jose-jwt
+    implementation("com.nimbusds:nimbus-jose-jwt:10.7")
+
     // Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto
     implementation("org.springframework.security:spring-security-crypto")
 

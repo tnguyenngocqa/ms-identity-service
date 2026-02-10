@@ -35,6 +35,7 @@ public class UserService {
         // use mapstruct = map fields the same name
         User user = userMapper.toUser(request);
 
+        // encrypt password before saving database
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
